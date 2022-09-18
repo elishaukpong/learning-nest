@@ -7,7 +7,10 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ 
     whitelist: true, //remove values not declared in dto
     transform: true, // makes payload come as instance of dto type
-    forbidNonWhitelisted: true //throws error if extra values are given
+    forbidNonWhitelisted: true, //throws error if extra values are given
+    transformOptions: {
+      enableImplicitConversion: true
+    }
   }));
   await app.listen(3000);
 }
