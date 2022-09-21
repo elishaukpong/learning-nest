@@ -9,14 +9,13 @@ import * as Joi from '@hapi/joi';
 
 @Module({
   imports: [
-    
-    CoffeesModule,  
+    CoffeesModule,
     CoffeeRatingModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         DATABASE_HOST: Joi.required(),
-        DATABASE_PORT: Joi.number().default(5432)
-      })
+        DATABASE_PORT: Joi.number().default(5432),
+      }),
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -26,8 +25,8 @@ import * as Joi from '@hapi/joi';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
-      synchronize: true
-    })
+      synchronize: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
